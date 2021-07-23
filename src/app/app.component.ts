@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { AfterViewChecked, Component } from '@angular/core';
+import { cartItem } from './model/cartItem';
+import { CartService } from './service/cart.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,14 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'SapientProject';
+  showCart: boolean = false;
+  public cartItemList: cartItem[] = [];
+
+  constructor(public cartService: CartService){
+    this.cartItemList = cartService.cartItemList;
+  }
+
+  toggleCart(){
+    this.showCart = !this.showCart;
+  }
 }
